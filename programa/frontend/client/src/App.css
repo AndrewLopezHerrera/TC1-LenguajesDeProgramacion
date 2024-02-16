@@ -1,0 +1,12 @@
+.titulo{
+  display: flex;
+  font-size: 130%;
+  font-family: 'Trebuchet MS';
+  justify-content: center;
+  align-items: center;
+}
+
+.IngreseNombre{
+  display: flex;
+  flex-direction: row;
+}
