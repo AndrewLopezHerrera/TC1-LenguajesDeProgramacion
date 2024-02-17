@@ -1,12 +1,146 @@
+/**Direccion de colores: https://colorhunt.co/palette/40a2e3fff6e9bbe2ec0d9276*/
+
+html{
+  height: 100%;
+  width: 100%;
+  background-color: #211951;
+}
+
+body{
+  width: 100%;
+  height: 100%;
+}
+
+.ContenedorPantalla{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .titulo{
   display: flex;
-  font-size: 130%;
-  font-family: 'Trebuchet MS';
+  font-size: 1000%;
+  font-family:'Times New Roman', Times, serif;
+  color: #793FDF;
+  background-color: #F0F3FF;
   justify-content: center;
   align-items: center;
+  border-radius: 100px;
+  width: 50%;
 }
 
 .IngreseNombre{
   display: flex;
   flex-direction: row;
+  height: 100%;
+  width: 98%;
+  justify-content: center;
+  
 }
+
+.NombreJugadores{
+  display: flex;
+  font-family:'Times New Roman', Times, serif;
+  color: #793FDF;
+  height: 100%;
+  width: 40%;
+  align-items: center;
+  flex-direction: column;
+  background-color: #F0F3FF;
+  border-radius: 30px;
+}
+
+.TituloJugador{
+  font-size: 500%;
+  justify-content: center;
+  align-items: center;
+}
+
+.PantallaJuego{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 75%;
+  width: 100%;
+}
+
+.EspacioJugadores{
+  width: 5%;
+}
+
+.SeccionEntradaNombres{
+  width: 100%;
+  height: 50%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+}
+
+.contenedorBotonesInicio{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 60%;
+  align-items: center;
+  justify-content: center;
+}
+
+.ContenedorBotonInicio{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.BotonesInicio{
+  height: 35%;
+  width: 50%;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 100%;
+  border-radius: 30px;
+  color: #793FDF;
+  font-size:xx-large;
+  border: none;
+}
+
+.ContenedorBotonAceptarNombre{
+  display: flex;
+  width: 100%;
+  height: 30%;
+  align-items: center;
+  justify-content: center;
+}
+
+.BotonAceptarNombre{
+  background-color: #836FFF;
+  border: none;
+  color: #F0F3FF;
+  height: 50%;
+  width: 50%;
+  border-radius: 10px;
+}
+
+.TituloHistorial{
+  font-family: 'Times New Roman', Times, serif;
+  background-color: #F0F3FF;
+  color: #F94C10;
+  font-size: 500%;
+  height: 15%;
+  width: 35%;
+  justify-content: center;
+  display: flex;
+  border-radius: 20px
+}
+
+.TablaHistorial{
+  border: 5px solid black;
+  background-color: #AED2FF;
+  display: flex;
+  height: 50%;
+  width: 70%;
+}
+
