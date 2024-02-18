@@ -1,5 +1,19 @@
 import './App.css';
 
+function VolverHistorialJuegos(){
+  document.getElementById("PantallaHistorial").style.display = "none";
+  document.getElementById("PantallaInicio").style.display = "flex";
+}
+
+function VerHistorialJuegos(){
+  document.getElementById("PantallaInicio").style.display = "none";
+  document.getElementById("PantallaHistorial").style.display = "flex";
+}
+
+function InsertarZonaJuego(){
+  
+}
+
 function InsertarTitulo(){
   return (
     <div class = "titulo">Ahorcado</div>
@@ -18,25 +32,40 @@ function InsertarCuerpo(){
 
 function InsertarHistorialJuegos(){
   return (
-    <div class = "PantallaJuego">
+    <div id = "PantallaHistorial" class = "PantallaJuego" style = {{display: "none"}}>
       <h1 class = "TituloHistorial">Historial de Juegos</h1>
-      <table id = "Historial" class = "TablaHistorial">
-        <InsertarEncabezado />
+      <InsertarTabla />
+      <InsertarBotonVolverHistorial />
+    </div>
+  );
+}
 
-      </table>
+function InsertarTabla(){
+  return (
+    <table id = "Historial" class = "TablaHistorial">
+      <InsertarEncabezado />
+      <tbody id = "CuerpoTabla" />
+    </table>
+  );
+}
+
+function InsertarBotonVolverHistorial(){
+  return (
+    <div class = "ContenedorBotonAceptarNombre">
+      <button class = "BotonesInicio" onClick = {VolverHistorialJuegos}>Volver</button>
     </div>
   );
 }
 
 function InsertarEncabezado(){
   return (
-    <thead>
-      <tr>
-        <td>Número de Juego</td>
-        <td>Jugador 1</td>
-        <td>Jugador 2</td>
-        <td>Resultado</td>
-        <td>Ganador</td>
+    <thead class = "FilaTabla">
+      <tr class = "FilaTabla">
+        <td class = "cuadroTablaEncabezado">Número de Juego</td>
+        <td class = "cuadroTablaEncabezado">Jugador 1</td>
+        <td class = "cuadroTablaEncabezado">Jugador 2</td>
+        <td class = "cuadroTablaEncabezado">Resultado</td>
+        <td class = "cuadroTablaEncabezado">Ganador</td>
       </tr>
     </thead>
   );
@@ -44,7 +73,7 @@ function InsertarEncabezado(){
 
 function AgregarPantallaJuego(){
   return (
-    <div class = "PantallaJuego" style={{display: "none"}}>
+    <div id = "PantallaInicio" class = "PantallaJuego" style={{display: "none"}}>
         <div style={{height: "50%"}} />
         <AgregarRegistradoresJugadores />
         <AgregarControlesInicio />
@@ -103,7 +132,7 @@ function AgregarControlesInicio(){
         <button class = "BotonesInicio">Jugar</button>
       </div>
       <div class = "ContenedorBotonInicio">
-        <button class = "BotonesInicio">Ver historial de juego</button>
+        <button class = "BotonesInicio" onClick = {VerHistorialJuegos}>Ver historial de juego</button>
       </div>
     </div>
   );

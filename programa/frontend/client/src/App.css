@@ -137,10 +137,29 @@ body{
 }
 
 .TablaHistorial{
-  border: 5px solid black;
-  background-color: #AED2FF;
   display: flex;
+  flex-direction: column;
   height: 50%;
   width: 70%;
 }
 
+.FilaTabla{
+  width: 100%;
+}
+
+.cuadroTablaEncabezado{
+  width: 7%;
+  height: 20%;
+  border: 5px solid #F0F3FF;
+  color: #F0F3FF;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.CuadroTabla{
+  border: 5px solid #F0F3FF;
+  color: #211951;
+  width: 7%;
+  height: 20%;
+  background-color: #F0F3FF;
+  font-family: 'Times New Roman', Times, serif;
+}
