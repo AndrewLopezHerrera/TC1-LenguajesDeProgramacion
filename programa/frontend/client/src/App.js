@@ -1,4 +1,22 @@
 import './App.css';
+import React, { useState } from 'react';
+import axios from "axios";
+import imagen1 from "./resources/images/Imagen1.png";
+import imagen2 from "./resources/images/Imagen2.png";
+import imagen3 from "./resources/images/Imagen3.png";
+import imagen4 from "./resources/images/Imagen4.png";
+import imagen5 from "./resources/images/Imagen5.png";
+import imagen6 from "./resources/images/Imagen6.png";
+import imagen7 from "./resources/images/Imagen7.png";
+import imagen8 from "./resources/images/Imagen8.png";
+
+//Lógica de la interfaz gráfica
+function RevisarNombreDos(){
+
+}
+
+
+//Interfaz gráfica
 
 function VolverHistorialJuegos(){
   document.getElementById("PantallaHistorial").style.display = "none";
@@ -11,7 +29,43 @@ function VerHistorialJuegos(){
 }
 
 function InsertarZonaJuego(){
-  
+  return (
+    <div class = "PantallaJuego" style={{display: "none"}}>
+      <div class = "CajaJuego">
+        <div class = "CajaImagen">
+          <InsertarCajaImagen />
+        </div>
+        <div class = "ZonaJuego">
+          <InsertarBarraPalabra />
+          <InsertarControlesJuego />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function InsertarBarraPalabra(){
+  return (
+    <div class = "BarraPalabra">
+
+    </div>
+  );
+}
+
+function InsertarControlesJuego(){
+  return (
+    <div class = "BarraControles">
+      <input></input>
+      <button>Aceptar</button>
+      <button>Borrar</button>
+    </div>
+  );
+}
+
+function InsertarCajaImagen(){
+  return(
+    <img class = "ImagenAhorcador" src = {imagen1} />
+  );
 }
 
 function InsertarTitulo(){
@@ -26,6 +80,7 @@ function InsertarCuerpo(){
       <InsertarTitulo />
       <AgregarPantallaJuego />
       <InsertarHistorialJuegos />
+      <InsertarZonaJuego />
     </div>
   );
 }
@@ -73,7 +128,7 @@ function InsertarEncabezado(){
 
 function AgregarPantallaJuego(){
   return (
-    <div id = "PantallaInicio" class = "PantallaJuego" style={{display: "none"}}>
+    <div id = "PantallaInicio" class = "PantallaJuego">
         <div style={{height: "50%"}} />
         <AgregarRegistradoresJugadores />
         <AgregarControlesInicio />
@@ -92,17 +147,35 @@ function AgregarRegistradoresJugadores(){
 }
 
 function AgregarRegistradorJugadorUno(){
+  const [datos, setDatos] = useState({nombre: ""});
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/comprobarnombre', datos);
+      console.log('Respuesta del servidor:', response.data);
+    } catch (error) {
+      console.error('Error al enviar los datos:', error);
+    }
+  };
+
   return(
     <div class = "NombreJugadores">
       <div class = "TituloJugador">
         Jugador 1
       </div>
       <div class = "SeccionEntradaNombres">
-        <input></input>
-      </div>
-      <div id = "MensajeJugadorUno"></div>
-      <div class = "ContenedorBotonAceptarNombre">
-        <button class = "BotonAceptarNombre">Aceptar</button>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={datos.nombre}
+            onChange={(e) => setDatos({ ...datos, nombre: e.target.value })}
+            placeholder="Nombre"
+          />
+          <div class = "ContenedorBotonAceptarNombre">
+            <button class = "BotonAceptarNombre" type="submit">Aceptar</button>
+          </div>
+        </form>
       </div>
     </div>
   );
@@ -115,7 +188,7 @@ function AgregarRegistradorJugadorDos(){
         Jugador 2
       </div>
       <div class = "SeccionEntradaNombres">
-        <input></input>
+        <input id = "NombreDos"></input>
       </div>
       <div id = "MensajeJugadorDos"></div>
       <div class = "ContenedorBotonAceptarNombre">

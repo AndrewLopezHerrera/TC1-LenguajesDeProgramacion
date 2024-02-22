@@ -61,6 +61,7 @@ body{
 .PantallaJuego{
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   height: 75%;
   width: 100%;
@@ -162,4 +163,60 @@ body{
   height: 20%;
   background-color: #F0F3FF;
   font-family: 'Times New Roman', Times, serif;
+}
+
+.CajaJuego{
+  display: flex;
+  background-color: #836FFF;
+  border-radius: 30px;
+  border: 5px solid black;
+  height: 90%;
+  width: 90%;
+  justify-content: center;
+  align-items: center;
+}
+
+.CajaImagen{
+  background-color: #FFFFFF;
+  border-radius: 30px;
+  height: 90%;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ImagenAhorcador{
+  height: 90%;
+  width: 90%;
+}
+
+.ZonaJuego{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+  width: 60%;
+  background-color: #F0F3FF;
+  margin-left: 3%;
+  border-radius: 30px;
+}
+
+.BarraPalabra{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45%;
+  width: 95%;
+  background-color: #211951;
+  border-radius: 30px;
+}
+
+.BarraControles{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45%;
+  width: 95%;
 }
