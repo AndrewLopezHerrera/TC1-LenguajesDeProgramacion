@@ -10,16 +10,118 @@ import imagen6 from "./resources/images/Imagen6.png";
 import imagen7 from "./resources/images/Imagen7.png";
 import imagen8 from "./resources/images/Imagen8.png";
 
-//Lógica de la interfaz gráfica
-function RevisarNombreDos(){
+var imagenes = [];
 
+//Lógica de la interfaz gráfica
+function ComprobarNombreUno(){
+  const nombreUno = document.getElementById("NombreUno").value;
+  const mensajeJugadorUno = document.getElementById("MensajeJugadorUno");
+  if (nombreUno == ""){
+    mensajeJugadorUno.textContent = "El nombre está vacío";
+  }
+  else{
+    mensajeJugadorUno.textContent = "";
+  }
+  return nombreUno;
 }
 
+function ComprobarNombreDos(){
+  const nombreDos = document.getElementById("NombreDos").value;
+  const mensajeJugadorDos = document.getElementById("MensajeJugadorDos");
+  if (nombreDos == ""){
+    mensajeJugadorDos.textContent = "El nombre está vacío";
+  }
+  else{
+    mensajeJugadorDos.textContent = "";
+  }
+  return nombreDos;
+}
+
+function EnviarNombres(nombreUno, nombreDos){
+  const nombres = {nombreUno: nombreUno, nombreDos: nombreDos};
+  axios.post("http://localhost:5000/iniciarjuego", nombres)
+    .then(reponse => {
+      console.log(reponse.data)
+    })
+    .catch(error => {
+      console.error(error);
+      return false;
+    })
+  return true;
+}
+
+function CargarImagenes(){
+  imagenes = [
+    imagen2,
+    imagen3,
+    imagen4,
+    imagen5,
+    imagen6,
+    imagen7,
+    imagen8
+  ]
+}
+
+function IniciarRonda(){
+  axios.get("http://localhost:5000/jugarronda")
+    .then( response => {
+      console.log(response.data)
+    })
+    .catch(error => {
+      console.error(error);
+      return false;
+    })
+  CargarImagenes();
+  return true;
+}
+
+function JugarAhorcado(){
+  const nombreUno = ComprobarNombreUno();
+  const nombreDos = ComprobarNombreDos();
+  if(nombreUno !== "" && nombreDos !== "" && EnviarNombres(nombreUno, nombreDos) && IniciarRonda()){
+    MostrarPantallaJuego();
+  }
+}
+
+function EnviarLetra(){
+  const letra = document.getElementById("EntradaLetra").value;
+  const dato = {letra: letra}
+  var resultado = "";
+  axios.post("http://localhost:5000/comprobarletra", dato)
+    .then( response => {
+      console.log(response.data)
+      resultado = response.data;
+    })
+    .catch(error => {
+      console.error(error);
+      return false;
+    })
+  
+}
+
+function AnalizarResultado(resultado){
+  if(resultado === "Fallo"){
+
+  }
+}
+
+function validarInput(input) {
+  // Obtener el valor actual del input
+  let valor = input.value.toLowerCase();
+
+  // Remover caracteres no permitidos
+  valor = valor.replace(/[^a-zñ]/g, '');
+
+  // Actualizar el valor del input
+  input.value = valor;
+}
 
 //Interfaz gráfica
 
-function VolverHistorialJuegos(){
+//Pantalla de juego
+function VolverPantallaInicio(){
   document.getElementById("PantallaHistorial").style.display = "none";
+  document.getElementById("PantallaJuego").style.display = "none";
   document.getElementById("PantallaInicio").style.display = "flex";
 }
 
@@ -28,9 +130,14 @@ function VerHistorialJuegos(){
   document.getElementById("PantallaHistorial").style.display = "flex";
 }
 
+function MostrarPantallaJuego(){
+  document.getElementById("PantallaInicio").style.display = "none";
+  document.getElementById("PantallaJuego").style.display = "flex";
+}
+
 function InsertarZonaJuego(){
   return (
-    <div class = "PantallaJuego" style={{display: "none"}}>
+    <div id = "PantallaJuego" class = "PantallaJuego" style={{display: "none"}}>
       <div class = "CajaJuego">
         <div class = "CajaImagen">
           <InsertarCajaImagen />
@@ -46,7 +153,7 @@ function InsertarZonaJuego(){
 
 function InsertarBarraPalabra(){
   return (
-    <div class = "BarraPalabra">
+    <div id = "BarraPalabra" class = "BarraPalabra">
 
     </div>
   );
@@ -55,7 +162,7 @@ function InsertarBarraPalabra(){
 function InsertarControlesJuego(){
   return (
     <div class = "BarraControles">
-      <input></input>
+      <input id='EntradaLetra' type = 'text' placeholder = 'Escribe la letra' onInput={validarInput(this)}></input>
       <button>Aceptar</button>
       <button>Borrar</button>
     </div>
@@ -85,6 +192,7 @@ function InsertarCuerpo(){
   );
 }
 
+//Historial de juegos.
 function InsertarHistorialJuegos(){
   return (
     <div id = "PantallaHistorial" class = "PantallaJuego" style = {{display: "none"}}>
@@ -107,7 +215,7 @@ function InsertarTabla(){
 function InsertarBotonVolverHistorial(){
   return (
     <div class = "ContenedorBotonAceptarNombre">
-      <button class = "BotonesInicio" onClick = {VolverHistorialJuegos}>Volver</button>
+      <button class = "BotonesInicio" onClick = {VolverPantallaInicio}>Volver</button>
     </div>
   );
 }
@@ -126,6 +234,7 @@ function InsertarEncabezado(){
   );
 }
 
+//Pantalla de inicio
 function AgregarPantallaJuego(){
   return (
     <div id = "PantallaInicio" class = "PantallaJuego">
@@ -147,36 +256,15 @@ function AgregarRegistradoresJugadores(){
 }
 
 function AgregarRegistradorJugadorUno(){
-  const [datos, setDatos] = useState({nombre: ""});
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:5000/comprobarnombre', datos);
-      console.log('Respuesta del servidor:', response.data);
-    } catch (error) {
-      console.error('Error al enviar los datos:', error);
-    }
-  };
-
   return(
     <div class = "NombreJugadores">
       <div class = "TituloJugador">
         Jugador 1
       </div>
       <div class = "SeccionEntradaNombres">
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={datos.nombre}
-            onChange={(e) => setDatos({ ...datos, nombre: e.target.value })}
-            placeholder="Nombre"
-          />
-          <div class = "ContenedorBotonAceptarNombre">
-            <button class = "BotonAceptarNombre" type="submit">Aceptar</button>
-          </div>
-        </form>
+        <input id = "NombreUno" type = "text" placeholder = 'Escribe el nombre'></input>
       </div>
+      <div id = "MensajeJugadorUno"></div>
     </div>
   );
 }
@@ -188,12 +276,9 @@ function AgregarRegistradorJugadorDos(){
         Jugador 2
       </div>
       <div class = "SeccionEntradaNombres">
-        <input id = "NombreDos"></input>
+        <input id = "NombreDos" type = "text" placeholder = 'Escribe el nombre'></input>
       </div>
       <div id = "MensajeJugadorDos"></div>
-      <div class = "ContenedorBotonAceptarNombre">
-        <button class = "BotonAceptarNombre">Aceptar</button>
-      </div>
     </div>
   );
 }
@@ -202,7 +287,7 @@ function AgregarControlesInicio(){
   return(
     <div class = "contenedorBotonesInicio">
       <div class = "ContenedorBotonInicio">
-        <button class = "BotonesInicio">Jugar</button>
+        <button class = "BotonesInicio" onClick={JugarAhorcado}>Jugar</button>
       </div>
       <div class = "ContenedorBotonInicio">
         <button class = "BotonesInicio" onClick = {VerHistorialJuegos}>Ver historial de juego</button>
@@ -210,6 +295,7 @@ function AgregarControlesInicio(){
     </div>
   );
 }
+
 
 function App() {
   document.getElementById("root").style.width = "100%";
