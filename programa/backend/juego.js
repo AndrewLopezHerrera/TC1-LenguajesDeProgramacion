@@ -126,11 +126,11 @@ class Juego{
      * Desempata los jugadores en caso de que hayan tenido la misma cantidad de rondas ganadas.
      */
     DesempatarJugadores(){
-        if(this.JugadorUno.TiempoJugado > this.JugadorDos.TiempoJugado){
+        if(this.JugadorUno.TiempoJugado < this.JugadorDos.TiempoJugado){
             this.Ganador = this.JugadorUno.Nombre;
             this.Resultado = "Gane";
         }
-        else if(this.JugadorUno.TiempoJugado < this.JugadorUno.TiempoJugado){
+        else if(this.JugadorUno.TiempoJugado > this.JugadorUno.TiempoJugado){
             this.Ganador = this.JugadorDos.Nombre;
             this.Resultado = "Gane"
         }

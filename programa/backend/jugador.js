@@ -46,9 +46,9 @@ class Jugador{
      */
     CantidadRondasGanadas(){
         var rondasGanadas = 0;
-        if (this.ResultadoRondaUno == "Gano")
+        if (this.ResultadoRondaUno === "Gano")
             rondasGanadas++;
-        if (this-this.ResultadoRondaDos == "Gano")
+        else if (this.ResultadoRondaDos === "Gano")
             rondasGanadas++;
         return rondasGanadas;
     }
