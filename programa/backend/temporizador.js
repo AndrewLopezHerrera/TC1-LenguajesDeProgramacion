@@ -17,7 +17,7 @@ class Temporizador{
      * Inicia el temporizador.
      */
     IniciarTemporizador(){
-        this.Contador = setInterval(this.SumarTiempo, 1000);
+        this.Contador = setInterval(() => this.SumarTiempo(), 1000);
     }
 
     /**

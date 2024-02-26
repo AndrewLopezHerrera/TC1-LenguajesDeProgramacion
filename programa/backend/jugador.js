@@ -39,6 +39,19 @@ class Jugador{
     IngresarResultadorRondaDos(resultado){
         this.ResultadoRondaDos = resultado;
     }
+
+    /**
+     * Cuenta la cantidad de rondas ganadas.
+     * @returns {number} cantidad de rondas ganadas.
+     */
+    CantidadRondasGanadas(){
+        var rondasGanadas = 0;
+        if (this.ResultadoRondaUno == "Gano")
+            rondasGanadas++;
+        if (this-this.ResultadoRondaDos == "Gano")
+            rondasGanadas++;
+        return rondasGanadas;
+    }
 };
 
 module.exports = Jugador;

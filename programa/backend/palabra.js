@@ -28,20 +28,20 @@ class Palabra{
             return 0;
         }
         const palabrasPorLongitud = JSON.parse(data);
-        EscogerLargoPalabra(palabrasPorLongitud);
+        this.EscogerLargoPalabra(palabrasPorLongitud);
         });
     }
 
     /**
      * Escoge el largo de las palabras para la todas las rondas.
-     * @param {JSON} json La base de datos.
+     * @param {any} json La base de datos.
      */
     EscogerLargoPalabra(json){
         const tamanos = ["six", "seven", "eight", "nine"];
-        const indice = Math.random() * (4 - 1) + 1;
+        const indice = Math.floor(Math.random() * 4 );
         const tamano = tamanos[indice];
         const palabras = json[tamano];
-        AsignarPalabras(palabras);
+        this.AsignarPalabras(palabras);
     }
 
     /**
@@ -49,16 +49,18 @@ class Palabra{
      * @param {string[]} palabras El arreglo de palabras del mismo largo.
      */
     AsignarPalabras(palabras){
+        console.log(palabras);
         for(var max = 15; max > 11; max--){
-            var indice = Math.random() * (max - 1) + 1;
+            var indice = Math.floor(Math.random() * (max) );
+            console.log(indice);
             if (max == 15)
-                PalabraUno = palabras[indice].split("");
+                this.PalabraUno = palabras[indice].split("");
             else if (max == 14)
-                PalabraDos = palabras[indice].split("");
+                this.PalabraDos = palabras[indice].split("");
             else if (max == 13)
-                PalabraTres = palabras[indice].split("");
+                this.PalabraTres = palabras[indice].split("");
             else
-                PalabraCuatro = palabras[indice].split("");
+                this.PalabraCuatro = palabras[indice].split("");
             palabras.splice(indice, 1);
         }
     }
@@ -72,11 +74,11 @@ class Palabra{
             this.PalabraActual = 2;
             return this.PalabraUno;
         }
-        if(this.PalabraActual == 1){
+        if(this.PalabraActual == 2){
             this.PalabraActual = 3;
             return this.PalabraDos;
         }
-        if(this.PalabraActual == 1){
+        if(this.PalabraActual == 3){
             this.PalabraActual = 4;
             return this.PalabraTres;
         }

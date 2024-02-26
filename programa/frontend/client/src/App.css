@@ -211,12 +211,17 @@ body{
   width: 95%;
   background-color: #211951;
   border-radius: 30px;
+  color: #FFFFFF;
+  font-size: 400%;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .BarraControles{
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 45%;
+  height: 25%;
   width: 95%;
+  font-size: 200%;
+  font-family: 'Times New Roman', Times, serif;
 }
