@@ -65,7 +65,6 @@ class Juego{
             this.JugadorActual = this.JugadorDos;
         }
         this.Temporizador.IniciarTemporizador();
-        this.Ronda++;
         console.log("Palabra seleccionada: ", this.PalabraSeleccionada);
         console.log("Palabra oculta: ", this.PalabraOculta);
     }
@@ -90,6 +89,7 @@ class Juego{
         this.Temporizador.RestablecerTemporizador();
         this.JugadorActual.SumarTiempoJugador(tiempo);
         this.Fallos = 0;
+        this.Ronda++;
     }
 
     /**
@@ -256,7 +256,7 @@ class Juego{
     ObtenerResultados(){
         const mensaje = "Jugador uno: " + this.JugadorUno.Nombre + " || Tiempo jugado: " +
             this.JugadorUno.TiempoJugado + "s || Rondas Ganadas: " +
-            this.JugadorUno.CantidadRondasGanadas() + "<br/>Jugador dos: " +
+            this.JugadorUno.CantidadRondasGanadas() + "<br />Jugador dos: " +
             this.JugadorDos.Nombre + " || Tiempo jugado: " + this.JugadorDos.TiempoJugado +
             "s || Rondas Ganadas: " + this.JugadorDos.CantidadRondasGanadas();
         return mensaje;
