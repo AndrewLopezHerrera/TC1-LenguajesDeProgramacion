@@ -1,0 +1,7 @@
+a. Nombre del curso: Lenguajes de programación
+b. Número de semestre y año lectivo: I Semestre Año 2024
+c. Nombre del Estudiante: Andrew López Herrera
+d. Número de carnet del estudiante: 2021062132
+e. Número de tarea: 1
+f. Fecha de entrega: 25/02/2024
+g. Estatus de la entrega:  Buena
