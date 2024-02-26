@@ -130,7 +130,7 @@ class Juego{
             this.Ganador = this.JugadorUno.Nombre;
             this.Resultado = "Gane";
         }
-        else if(this.JugadorUno.TiempoJugado > this.JugadorUno.TiempoJugado){
+        else if(this.JugadorUno.TiempoJugado > this.JugadorDos.TiempoJugado){
             this.Ganador = this.JugadorDos.Nombre;
             this.Resultado = "Gane"
         }
